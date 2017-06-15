@@ -1,6 +1,5 @@
 node {
 // git "https://github.com/khatilov/cc.git"
-git "https://github.com/YuriiChukhrai/UnitTestsTeam_B/tree/workspace"
 def mvnHome = tool 'Maven_3.5.0'
 // sh "'${mvnHome}/bin/mvn' clean site -Dgroups=all"
 sh "'${mvnHome}/bin/mvn' site"
