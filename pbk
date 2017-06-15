@@ -3,7 +3,7 @@ node {
 git "https://github.com/YuriiChukhrai/UnitTestsTeam_B/tree/workspace"
 def mvnHome = tool 'Maven_3.5.0'
 // sh "'${mvnHome}/bin/mvn' clean site -Dgroups=all"
-sh "'${mvnHome}/bin/mvn' clean site
+sh "'${mvnHome}/bin/mvn' site
 stage('Test') 		   {step([$class: 'Publisher', testResults: '**/testng-results.xml'])}
 stage('Code Coverage') {step([$class: 'JacocoPublisher', execPattern:'**/**.exec', classPattern: '**/classes', sourcePattern: '**/src/main/java'])}
 	}
