@@ -1,5 +1,5 @@
 node {
-git "https://github.com/Motchart/api"
+git "git@github.com:Motchart/api.git"
 def mvnHome = tool 'Maven_3.5.0'
 stage(Build & Deploy) {
 sh"'${mvnHome}/bin/mvn' clean package tomcat7:deploy"}
