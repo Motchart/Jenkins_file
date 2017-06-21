@@ -1,9 +1,5 @@
 node {
-<<<<<<< HEAD
 git "git@github.com:Motchart/WSS.git"
-=======
-git "https://github.com/Motchart/api"
->>>>>>> c3996bed49d1946d2c23ba7f22282ad99c3a8dbf
 def mvnHome = tool 'Maven_3.5.0'
 stage('Deploy') {sh "'${mvnHome}/bin/mvn' clean package tomcat7:deploy"}
 }
