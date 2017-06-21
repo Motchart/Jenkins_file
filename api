@@ -1,5 +1,5 @@
 node {
-git "git@github.com:Motchart/WSS.git"
+git "git@github.com:Motchart/Jenkins_file.git"
 def mvnHome = tool 'Maven_3.5.0'
 stage('Deploy') {sh "'${mvnHome}/bin/mvn' clean package tomcat7:deploy"}
 }
