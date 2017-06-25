@@ -21,3 +21,5 @@ emaillext(
           subject: "FAILED: job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
           body:  "FAILED: job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':".toString()
               + "\nCheck console output at ${env.BUILD_URL}console".toString(),               to: emailList)
+	}
+}
