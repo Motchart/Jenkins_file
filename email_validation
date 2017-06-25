@@ -12,12 +12,12 @@ try {
 	}
 }
 def emailNotify (emailList) {
-if ('SUCCSES'.equals(currentBuild.resultl.toString())) {
-emailText(
-	  subject: "PASSED: job '${env.JOB_NAME} {${env.BUILD_NUMBER}'",
-	  body:  "PASSED: job '$${env.JOB_NAME} {${env.BUILD_NUMBER}':".toString() 		+ "\nCheck console output at ${env.BUILD_URL}console".toString(),		to: emailList)
+if ('SUCCSES'.equals(currentBuild.result.toString())) {
+emaillext(
+	  subject: "PASSED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+	  body:  "PASSED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':".toString() 		+ "\nCheck console output at ${env.BUILD_URL}console".toString(),		to: emailList)
 if ('FAILED'.equals(currentBuild.resultl.toString())) {
-emailText(
+emaillext(
           subject: "FAILED: job '${env.JOB_NAME} {${env.BUILD_NUMBER}'",
           body:  "FAILED: job '$${env.JOB_NAME} {${env.BUILD_NUMBER}':".toString()
               + "\nCheck console output at ${env.BUILD_URL}console".toString(),               to: emailList)
