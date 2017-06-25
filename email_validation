@@ -1,0 +1,23 @@
+node {
+git 'https://github.com/Motchart/Credit-card-validation'
+def mvnHome = tool 'Maven_3.5.0'
+def emailList = 'chungachanga007@gmail.com';
+try {
+	currentBuild.result = "SUCCESS"
+	stage('Compile') {sh "'${mvnHome}/bin/mvn' clean compile"}
+	emailNotify(emailList)
+}catch (e) {
+	currentBuild.result = "FAILURE"
+	emailNotify(emailList)
+	}
+}
+def emailNotify (emailList) {
+if ('SUCCSES'.equals(currentBuild.resultl.toString())) {
+emailText(
+	  subject: "PASSED: job '${env.JOB_NAME} {${env.BUILD_NUMBER}'",
+	  body:  "PASSED job '$${env.JOB_NAME} {${env.BUILD_NUMBER}':".toString() 		+ "\nCheck console output at ${env.BUILD_URL}console".toString(),		to: emailList)
+if ('FAILED'.equals(currentBuild.resultl.toString())) {
+emailText(
+          subject: "FAILED: job '${env.JOB_NAME} {${env.BUILD_NUMBER}'",
+          body:  "FAILED: job '$${env.JOB_NAME} {${env.BUILD_NUMBER}':".toString()
+              + "\nCheck console output at ${env.BUILD_URL}console".toString(),               to: emailList)
