@@ -12,7 +12,7 @@ try {
 	}
 }
 def emailNotify (emailList) {
-if ('SUCCSES'.equals(currentBuild.result.toString())) {
+if ('SUCCESS'.equals(currentBuild.result.toString())) {
 emailext(
 	  subject: "PASSED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
 	  body:  "PASSED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':".toString() 		+ "\nCheck console output at ${env.BUILD_URL}console".toString(),		to: emailList)
