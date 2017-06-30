@@ -1,5 +1,5 @@
 node {
-git branch: 'workspace', url: 'https://github.com/YuriiChukhrai/UnitTestsTeam_B';
+git branch: 'workspace', url: 'https://github.com/YuriiChukhrai/UnitTestsTeam_B/'
 def mvnHome = tool 'Maven_3.5.0'
 def emailList = 'chungachanga007@gmail.com';
 try {
