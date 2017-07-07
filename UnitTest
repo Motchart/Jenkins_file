@@ -1,5 +1,5 @@
 node {
-git 'https://github.com/Motchart/UnitTestsTeam_B.git' 
+git 'https://7b438cdea1c1f5fd956c23c2f5f0269da8ae5d9c@github.com/Motchart/UnitTestsTeam_B.git' 
 def mvnHome = tool 'Maven_3.5.0'
 def emailList = 'chungachanga007@gmail.com';
 try {
