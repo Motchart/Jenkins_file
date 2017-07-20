@@ -4,7 +4,7 @@ def mvnHome = tool 'Maven_3.5.0'
 def emailList = '+ email +';
 try {
 	currentBuild.result = "SUCCESS"
-	stage('Site') {sh "'${mvnHome}/bin/mvn' clean Site"}
+	stage('site') {sh "'${mvnHome}/bin/mvn' clean site"}
 	emailNotify(emailList)
 }catch (e) {
 	currentBuild.result = "FAILURE"
