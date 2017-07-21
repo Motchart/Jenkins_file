@@ -1,14 +1,14 @@
 node {
 git "https://" + token + "@github.com/Motchart/UnitTestsTeam_B.git" 
 def mvnHome = tool 'Maven_3.5.0'
+publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '\\target\\site', reportFiles: 'surefire-report.html', reportName: 'Surefire Report', reportTitles: ''])
+publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '\\target\\site', reportFiles: 'allure-maven-plugin.html', reportName: 'Allure Report', reportTitles: ''])
 def emailList = 'motchart007@gmail.com';
-
+stage('Test') {step([$class: 'Publisher', testResults: '**/testng-results.xml'])}
 try {
 	currentBuild.result = "SUCCESS"
-	stage('site') {sh "'${mvnHome}/bin/mvn' clean site"
-publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '\\target\\site', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: 'surefire report'])
+	stage('site') {sh "'${mvnHome}/bin/mvn' clean site"}
 	emailNotify(emailList)
-stage('Test') {step([$class: 'Publisher', testResults: '**/testng-results.xml'])}	
 }catch (e) {
 	currentBuild.result = "FAILURE"
 	emailNotify(emailList)
