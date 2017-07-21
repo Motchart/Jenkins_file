@@ -1,5 +1,5 @@
 node {
-git branch: "" + branch +"", url:"https://" + token + "@" + git + "" 
+git branch: "" + branch +"", url:"https://" + token + "@" + git
 def mvnHome = tool 'Maven_3.5.0'
 def emailList = 'chungachanga007@gmail.com';
 try {
