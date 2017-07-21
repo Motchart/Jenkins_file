@@ -6,9 +6,7 @@ def emailList = 'motchart007@gmail.com';
 try {
 	currentBuild.result = "SUCCESS"
 	stage('site') {sh "'${mvnHome}/bin/mvn' clean site"
-publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target\\site', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: 'surefire report'])
-
-publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '\\target\\site', reportFiles: 'allure-maven-plugin.html', reportName: 'Allure Report', reportTitles: ''])}
+publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '\\target\\site', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: 'surefire report'])
 	emailNotify(emailList)
 stage('Test') {step([$class: 'Publisher', testResults: '**/testng-results.xml'])}	
 }catch (e) {
