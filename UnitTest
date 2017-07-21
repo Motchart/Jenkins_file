@@ -4,8 +4,9 @@ def mvnHome = tool 'Maven_3.5.0'
 def emailList = 'motchart007@gmail.com';
 try {
 	currentBuild.result = "SUCCESS"
-	stage('site') {sh "'${mvnHome}/bin/mvn' clean site"}
+	stage('site') {sh "'${mvnHome}/bin/mvn' clean site"
 	stage('TestNG'){step([@class: 'Publisher', testResults: '**/testng-results.xml'])}
+	}
 	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target\\site', reportFiles: 'surefire-report.html', reportName: 'Surefire Report', reportTitles: ''])
 	
 	emailNotify(emailList)
