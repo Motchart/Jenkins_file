@@ -1,5 +1,5 @@
 node {
-git "https://" + token + "@github.com/Motchart/UnitTestsTeam_B.git" 
+git branch: 'workspace' "https://" + token + "@github.com/Motchart/UnitTestsTeam_B.git" 
 def mvnHome = tool 'Maven_3.5.0'
 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target\\site', reportFiles: 'surefire-report.html', reportName: 'HTML Report', reportTitles: ''])
 def emailList = 'motchart007@gmail.com';
