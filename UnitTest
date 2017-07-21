@@ -1,7 +1,7 @@
 node {
 git branch: "" + branch +"", url:"https://" + token + "@github.com/YuriiChukhrai/UnitTestsTeam_B.git" 
 def mvnHome = tool 'Maven_3.5.0'
-def env = loadEnvs();
+def env = "" + email + ""
 def emailList = env;
 try {
 	currentBuild.result = "SUCCESS"
