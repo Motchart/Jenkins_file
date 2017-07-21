@@ -14,8 +14,6 @@ try {
 	stage('Test') {step([$class: 'Publisher', testResults: '**/testng-results.xml'])}
 	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target\\site', reportFiles: 'surefire-report.html', reportName: 'Surefire Report', reportTitles: ''])
 	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target\\site\\allure-report', reportFiles: 'index.html', reportName: 'Alure Report', reportTitles: ''])
-	allure includeProperties: false, jdk: '', results: [[path: 'target\\site\\allure-report\\index.html']]
-
 }
 def emailNotify (emailList) {
 if ('SUCCESS'.equals(currentBuild.result.toString())) {
