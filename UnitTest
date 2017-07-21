@@ -6,6 +6,7 @@ try {
 	currentBuild.result = "SUCCESS"
 	stage('site') {sh "'${mvnHome}/bin/mvn' clean site"
 	stage('Test') {step([$class: 'Publisher', testResults: '**/testng-results.xml'])}
+	emailNotify(emailList)
 	}
 	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target\\site', reportFiles: 'surefire-report.html', reportName: 'Surefire Report', reportTitles: ''])
 	
