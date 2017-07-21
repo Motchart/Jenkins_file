@@ -1,7 +1,7 @@
 node {
 git branch: 'workspace', url:"https://" + token + "@github.com/Motchart/UnitTestsTeam_B.git" 
 def mvnHome = tool 'Maven_3.5.0'
-def emailList = " + email + ";
+def emailList = email ;
 try {
 	currentBuild.result = "SUCCESS"
 	stage('site') {sh "'${mvnHome}/bin/mvn' clean site"
