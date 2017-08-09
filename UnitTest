@@ -1,7 +1,8 @@
 node {
 git branch: branch, url: git
 def mvnHome = tool 'Maven_3.5.0'
-String emailList;
+email
+def emailList = email;
 
 try {
 	currentBuild.result = "SUCCESS"
