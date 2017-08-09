@@ -8,6 +8,12 @@ try {
 	stage('Test') {sh "'${mvnHome}/bin/mvn' clean site"}
 	emailNotify(emailList)
 	stage('Test') {step([$class: 'Publisher', testResults: '**/testng-results.xml'])}
+	stage('Compile')${mvnHome}\bin\mvn" compile pmd:pmd pmd:cpd findbugs:findbugs checkstyle:checkstyle/
+                } 
+stage('PMD')        {step([$class: 'PmdPublisher', pattern: '**/pmd*.xml'])} 
+stage('CheckStyle')  {step([$class: 'CheckStylePublisher', pattern: '**/checkstyle*.xml'])} 
+stage('FindBugs')    {step([$class: 'FindBugsPublisher', pattern: '**/findbugs*.xml'])} 
+stage('CPD')        {step([$class: 'DryPublisher', pattern: '**/cpd.xml'])} 
 	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'target\\site', reportFiles: 'surefire-report.html', reportName: 'Surefire Report', reportTitles: ''])
 	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'target\\site\\allure-report', reportFiles: 'index.html', reportName: 'Alure Report', reportTitles: ''])	
 }catch (e) {
