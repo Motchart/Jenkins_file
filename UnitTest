@@ -4,17 +4,18 @@ def mvnHome = tool 'Maven_3.5.0'
 def emailList = 'chungachanga007@gmail.com';
 try {
 	currentBuild.result = "SUCCESS"
-	stage('site') {sh "'${mvnHome}/bin/mvn' clean site"}
+	stage('Test') {sh "'${mvnHome}/bin/mvn' clean site"}
+	stage('Test') {step([$class: 'Publisher', testResults: '**/testng-results.xml'])}
+	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target\\site', reportFiles: 'surefire-report.html', reportName: 'Surefire Report', reportTitles: ''])
+	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target\\site\\allure-report', reportFiles: 'index.html', reportName: 'Alure Report', reportTitles: ''])
+
 	emailNotify(emailList)
 	
 }catch (e) {
 	currentBuild.result = "FAILURE"
 	emailNotify(emailList)
 	}
-	stage('Test') {step([$class: 'Publisher', testResults: '**/testng-results.xml'])}
-	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target\\site', reportFiles: 'surefire-report.html', reportName: 'Surefire Report', reportTitles: ''])
-	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'target\\site\\allure-report', reportFiles: 'index.html', reportName: 'Alure Report', reportTitles: ''])
-}
+	}
 def emailNotify (emailList) {
 if ('SUCCESS'.equals(currentBuild.result.toString())) {
 emailext(
