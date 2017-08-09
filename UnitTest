@@ -5,12 +5,10 @@ def emailList = 'chungachanga007@gmail.com';
 try {
 	currentBuild.result = "SUCCESS"
 	stage('Test') {sh "'${mvnHome}/bin/mvn' clean site"}
-	def emailList = 'chungachanga007@gmail.com';
+	emailNotify(emailList)
 	stage('Test') {step([$class: 'Publisher', testResults: '**/testng-results.xml'])}
 	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'target\\site', reportFiles: 'surefire-report.html', reportName: 'Surefire Report', reportTitles: ''])
-	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'target\\site\\allure-report', reportFiles: 'index.html', reportName: 'Alure Report', reportTitles: ''])
-	emailNotify(emailList)
-	
+	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'target\\site\\allure-report', reportFiles: 'index.html', reportName: 'Alure Report', reportTitles: ''])	
 }catch (e) {
 	currentBuild.result = "FAILURE"
 	emailNotify(emailList)
