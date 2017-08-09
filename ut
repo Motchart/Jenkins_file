@@ -1,10 +1,6 @@
 def reportOnTestsForBuild() {
   def build = manager.build
   println("Build Number: ${build.number}")
-  if (build.getAction(hudson.tasks.junit.TestResultAction.class) == null) {
-    println("No tests")
-    return ("No Tests")
-  }
 
   // The string that will contain our report.
   String emailReport;
