@@ -1,7 +1,8 @@
 node {
 git branch: branch, url: git
 def mvnHome = tool 'Maven_3.5.0'
-def emailList = 'chungachanga007@gmail.com';
+email
+def emailList = email;
 try {
 	currentBuild.result = "SUCCESS"
 	stage('Test') {sh "'${mvnHome}/bin/mvn' clean site"}
