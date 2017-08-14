@@ -5,7 +5,7 @@ email
 def emailList = email;
 try {
 	currentBuild.result = "SUCCESS"
-	stage('Test') {sh "'${mvnHome}/bin/mvn' clean site -Durl=url}
+	stage('Test') {sh "'${mvnHome}/bin/mvn' clean site -Durl=url"}
 	emailNotify(emailList)
 	stage('Test') {step([$class: 'Publisher', testResults: '**/testng-results.xml'])}
 	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'target\\site', reportFiles: 'surefire-report.html', reportName: 'Surefire Report', reportTitles: ''])
